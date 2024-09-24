@@ -1447,6 +1447,8 @@ class TwitchChatDownloader(BaseChatDownloader):
         user_name_match = match.group(2)
         if user_name_match:
             info['author_name'] = user_name_match.split('!')[0]
+        elif info.get('author_display_name'):
+            info['author_name'] = info['author_display_name'].lower()
 
         in_reply_to = BaseChatDownloader._move_to_dict(info, 'in_reply_to')
 
