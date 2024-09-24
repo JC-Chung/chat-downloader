@@ -1309,7 +1309,6 @@ class TwitchChatDownloader(BaseChatDownloader):
         )
 
     _MESSAGE_REGEX = re.compile(
-        # r'^@(.+?(?=\s+:)).*tmi\.twitch\.tv\s+(\S+)(?:[^#\r\n]+#)?\s(?:\S+)?(?:\s:([^\r\n]*))?', re.MULTILINE)
         r'^@(.+?(?=\s+:))\s+:(.*)?tmi\.twitch\.tv\s+(\S+)(?:[^#\r\n]+#)?\s(?:\S+)?(?:\s:([^\r\n]*))?', re.MULTILINE)
     # Groups:
     # 1. Tag info
@@ -1448,10 +1447,6 @@ class TwitchChatDownloader(BaseChatDownloader):
         user_name_match = match.group(2)
         if user_name_match:
             info['author_name'] = user_name_match.split('!')[0]
-
-        # author_display_name = info.get('author_display_name')
-        # if author_display_name:
-            # info['author_name'] = author_display_name.lower()
 
         in_reply_to = BaseChatDownloader._move_to_dict(info, 'in_reply_to')
 
